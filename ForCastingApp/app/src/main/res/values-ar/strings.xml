@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">تطبيق توقعات الطقس</string>
+    <string name="tempUnit">ك</string>
+    <string name="hello_blank_fragment">مرحبًا، هذا هو الفضاء الفارغ</string>
+    <string name="temperature">درجة الحرارة</string>
+    <string name="location">الموقع</string>
+    <string name="windspeed">سرعة الرياح</string>
+    <string name="Language">اللغة</string>
+    <string name="milesPerHour">ميل في الساعة</string>
+    <string name="meterpersec">متر في الثانية</string>
+    <string name="fahrenheit">فهرنهايت</string>
+    <string name="celsius">سلزيوس</string>
+    <string name="kelvin">كيلفن</string>
+    <string name="arabic">عربي</string>
+    <string name="english">إنجليزي</string>
+    <string name="gps">نظام تحديد المواقع</string>
+    <string name="map">خريطة</string>
+    <string name="Save">حفظ</string>
+    <string name="NextForecast">التوقع التالي</string>
+    <string name="Delete">حذف</string>
+</resources>
+

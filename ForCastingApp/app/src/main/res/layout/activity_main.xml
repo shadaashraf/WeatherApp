@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2B3863"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <!-- Top Navigation Bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageButton
+            android:id="@+id/navigation_save"
+            android:layout_width="75dp"
+            android:layout_height="46dp"
+            android:background="@null"
+            android:contentDescription="Grid"
+            android:src="@drawable/plus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.977"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Scrollable Fragment Container -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <FrameLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2B3863" />
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2B3863"
+        android:padding="8dp">
+
+        <ImageButton
+            android:id="@+id/navigation_home"
+            android:layout_width="57dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:contentDescription="Home"
+            android:src="@drawable/home"
+            app:layout_constraintBottom_toTopOf="@+id/text_home"
+            app:layout_constraintEnd_toStartOf="@+id/navigation_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/text_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/navigation_home"
+            app:layout_constraintStart_toStartOf="@id/navigation_home" />
+
+        <ImageButton
+            android:id="@+id/navigation_search"
+            android:layout_width="50dp"
+            android:layout_height="44dp"
+            android:background="@null"
+            android:contentDescription="Search"
+            android:src="@drawable/search"
+            app:layout_constraintBottom_toTopOf="@+id/text_search"
+            app:layout_constraintEnd_toStartOf="@+id/navigation_grid"
+            app:layout_constraintStart_toEndOf="@id/navigation_home" />
+
+        <TextView
+            android:id="@+id/text_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/navigation_search"
+            app:layout_constraintStart_toStartOf="@id/navigation_search"
+            tools:text="Search" />
+
+        <ImageButton
+            android:id="@+id/navigation_grid"
+            android:layout_width="36dp"
+            android:layout_height="38dp"
+            android:background="@null"
+            android:contentDescription="Grid"
+            android:src="@drawable/planner"
+            app:layout_constraintBottom_toTopOf="@+id/text_grid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/navigation_search" />
+
+        <TextView
+            android:id="@+id/text_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/navigation_grid"
+            app:layout_constraintStart_toStartOf="@id/navigation_grid"
+            tools:text="Planner" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
