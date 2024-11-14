@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.forcastingapp.R
 import com.example.forcastingapp.database.LocalRepository
 import com.example.forcastingapp.fav.viewModel.FavoritesViewModel
 import com.example.forcastingapp.fav.viewModel.FavoritesViewModelFactory
@@ -17,6 +16,7 @@ import com.example.forcastingapp.home.view.WeatherFragment
 import com.example.forcastingapp.home.view.onClicklistener
 import com.example.forcastingapp.model.Repository
 import com.example.forcastingapp.network.WeatherRemoteDataSourceImpl
+import com.example.weatherforecast.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class FavoritesFragment : Fragment() ,onClicklistener{

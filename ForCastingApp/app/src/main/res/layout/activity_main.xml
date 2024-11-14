@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2B3863"
+    android:background="#FF325E65"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -20,7 +20,7 @@
             android:layout_height="46dp"
             android:background="@null"
             android:contentDescription="Grid"
-            android:src="@drawable/plus"
+            android:src="@drawable/favourite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.977"
@@ -33,20 +33,21 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="#325E65">
 
         <FrameLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#2B3863" />
+            android:background="#FF325E65" />
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2B3863"
+        android:background="#FF325E65"
         android:padding="8dp">
 
         <ImageButton
@@ -80,7 +81,7 @@
             android:layout_height="44dp"
             android:background="@null"
             android:contentDescription="Search"
-            android:src="@drawable/search"
+            android:src="@drawable/placeholder"
             app:layout_constraintBottom_toTopOf="@+id/text_search"
             app:layout_constraintEnd_toStartOf="@+id/navigation_grid"
             app:layout_constraintStart_toEndOf="@id/navigation_home" />
@@ -103,7 +104,7 @@
             android:layout_height="38dp"
             android:background="@null"
             android:contentDescription="Grid"
-            android:src="@drawable/planner"
+            android:src="@drawable/notification"
             app:layout_constraintBottom_toTopOf="@+id/text_grid"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/navigation_search" />

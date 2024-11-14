@@ -10,11 +10,11 @@ import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.forcastingapp.R
 import com.example.forcastingapp.alert.view.AlertFragment
 import com.example.forcastingapp.fav.view.FavoritesFragment
 import com.example.forcastingapp.home.view.WeatherFragment
 import com.example.forcastingapp.setting.view.SettingFragment
+import com.example.weatherforecast.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             loadFragment(MapFragment())
         }
         favButton.setOnClickListener{
-            loadFragment(AlertFragment())
+            loadFragment(FavoritesFragment())
         }
     }
     private fun createNotificationChannel() {

@@ -15,7 +15,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.forcastingapp.R
+import com.example.weatherforecast.R
+
 import com.example.forcastingapp.database.LocalRepository
 import com.example.forcastingapp.home.viewModel.HomeViewModel
 import com.example.forcastingapp.home.viewModel.HomeViewModelFactory
@@ -33,6 +34,7 @@ import java.util.Locale
 import java.util.TimeZone
 import android.Manifest
 import android.content.Context
+import com.example.forcastingapp.alert.view.AlertFragment
 
 class WeatherFragment : Fragment() {
 
@@ -52,6 +54,7 @@ class WeatherFragment : Fragment() {
     private lateinit var sunriseText: TextView
     private lateinit var  unitTemp: TextView
     private lateinit var locationProvider: LocationProvider
+    private lateinit var alert :ImageView
     private val repository: Repository by lazy {
         Repository.getInstance(
             LocalRepository.getInstance(requireContext()),
@@ -91,7 +94,7 @@ class WeatherFragment : Fragment() {
         recyclerViewHourly = view.findViewById(R.id.recyclerView_hourly)
         recyclerViewDay = view.findViewById(R.id.recycleViewDay)
         unitTemp=view.findViewById(R.id.tempUnit)
-
+        alert=view.findViewById(R.id.alert)
         // Set up RecyclerView
         hourlyAdapter = HourlyForcastAdapter()
         recyclerViewHourly.apply {
@@ -103,7 +106,12 @@ class WeatherFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = futureAdapter
         }
-
+        alert.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main_content, AlertFragment()) // Make sure to replace with your actual container ID
+                .addToBackStack(null) // Optional: add to back stack to allow navigation back
+                .commit()
+        }
         // Check if arguments are passed for latitude and longitude
         val latitude = arguments?.getDouble("latitude")
         val longitude = arguments?.getDouble("longitude")
@@ -218,7 +226,7 @@ class WeatherFragment : Fragment() {
             }
         }
 
-        locationText.text = "${currentWeather.name}, $country"
+        locationText.text = "{$country}"
         dateText.text = convertUnixToCustomDateFormat(currentWeather.dt)
         temperatureText.text =tempText
         unitTemp.text=unitText
@@ -244,23 +252,30 @@ class WeatherFragment : Fragment() {
 
     private fun updateWeatherForecastUI(weatherResponse: WeatherResponse) {
         val todayDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        val currentTime = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
 
+        // Filter today's weather data
         val todayWeatherList = weatherResponse.list.filter { item ->
             item.dt_txt?.startsWith(todayDate) == true
         }
 
-        // Filter future weather to include only entries with the same time as `currentTime`
+        // Get unique future dates
+        val futureDays = weatherResponse.list
+            .mapNotNull { it.dt_txt?.substring(0, 10) } // Extract the date part (yyyy-MM-dd)
+            .distinct() // Get unique dates
+            .filter { it > todayDate } // Keep only future dates
+
+        // Filter future weather data for those unique future days
         val futureWeatherList = weatherResponse.list.filter { item ->
-            !item.dt_txt!!.startsWith(todayDate) && item.dt_txt.contains(currentTime)
+            item.dt_txt?.substring(0, 10) in futureDays
         }
 
+        // Submit the lists to the adapters
         hourlyAdapter.submitList(todayWeatherList)
         futureAdapter.submitList(futureWeatherList)
     }
 
     private fun convertUnixToCustomDateFormat(unixTime: Long): String {
-        val dateFormat = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         dateFormat.timeZone = TimeZone.getTimeZone("GMT")
         return dateFormat.format(Date(unixTime * 1000))
     }

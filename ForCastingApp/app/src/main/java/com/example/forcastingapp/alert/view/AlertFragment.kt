@@ -12,12 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.forcastingapp.R
+
 import com.example.forcastingapp.alert.viewModel.WeatherAlertViewModel
 import com.example.forcastingapp.alert.viewModel.WeatherAlertViewModelFactory
 import com.example.forcastingapp.database.LocalRepository
 import com.example.forcastingapp.model.Repository
 import com.example.forcastingapp.network.WeatherRemoteDataSourceImpl
+import com.example.weatherforecast.R
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 

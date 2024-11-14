@@ -11,7 +11,8 @@ import android.os.Vibrator
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.forcastingapp.R
+import com.example.weatherforecast.R
+
 
 class AlertReceiver : BroadcastReceiver() {
 

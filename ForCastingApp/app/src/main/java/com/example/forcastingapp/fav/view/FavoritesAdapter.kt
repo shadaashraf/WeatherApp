@@ -8,9 +8,8 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-
-import com.example.forcastingapp.R
 import com.example.forcastingapp.model.SimpleWeatherData
+import com.example.weatherforecast.R
 
 interface OnCityClickListener {
     fun onCityClick(latitude: Double, longitude: Double)

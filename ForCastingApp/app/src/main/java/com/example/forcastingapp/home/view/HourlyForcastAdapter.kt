@@ -9,8 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.forcastingapp.R
+
 import com.example.forcastingapp.model.WeatherList
+import com.example.weatherforecast.R
 
 class HourlyForcastAdapter : ListAdapter<WeatherList, HourlyForcastAdapter.HourlyViewHolder>(
     DiffCallback()

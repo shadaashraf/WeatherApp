@@ -7,16 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.forcastingapp.MainActivity
-import com.example.forcastingapp.databinding.FragmentSettingBinding
+import com.example.weatherforecast.databinding.FragmentSettingBinding
 
 import java.util.Locale
 
 class SettingFragment : Fragment() {
-    lateinit var binding: FragmentSettingBinding
+    private var _binding: FragmentSettingBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            // Handle arguments if needed
         }
     }
 
@@ -24,8 +26,8 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentSettingBinding.inflate(inflater, container, false )
+        // Inflate the layout for this fragment and bind views using ViewBinding
+        _binding = FragmentSettingBinding.inflate(inflater, container, false)
 
         // Load saved language preference and check the appropriate radio button
         val prefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
@@ -37,20 +39,28 @@ class SettingFragment : Fragment() {
             binding.radioArabic.isChecked = true
             binding.radioEnglish.isChecked = false
         }
+
+        // Load saved temperature preference and check the appropriate radio button
         val savedTemperature = prefs.getString("temperature", "c")
-        if (savedTemperature == "c") {
-            binding.radioCelsius.isChecked = true
-            binding.radioKelvin.isChecked = false
-            binding.radioFahrenheit.isChecked = false
-        } else if (savedTemperature == "k") {
-            binding.radioCelsius.isChecked = false
-            binding.radioKelvin.isChecked = true
-            binding.radioFahrenheit.isChecked = false
-        } else {
-            binding.radioCelsius.isChecked = false
-            binding.radioKelvin.isChecked = false
-            binding.radioFahrenheit.isChecked = true
+        when (savedTemperature) {
+            "c" -> {
+                binding.radioCelsius.isChecked = true
+                binding.radioKelvin.isChecked = false
+                binding.radioFahrenheit.isChecked = false
+            }
+            "k" -> {
+                binding.radioCelsius.isChecked = false
+                binding.radioKelvin.isChecked = true
+                binding.radioFahrenheit.isChecked = false
+            }
+            else -> {
+                binding.radioCelsius.isChecked = false
+                binding.radioKelvin.isChecked = false
+                binding.radioFahrenheit.isChecked = true
+            }
         }
+
+        // Load saved wind speed preference and check the appropriate radio button
         val savedWindSpeed = prefs.getString("windSpeed", "meterPerSec")
         if (savedWindSpeed == "meterPerSec") {
             binding.radioMilesPerHour.isChecked = false
@@ -60,6 +70,7 @@ class SettingFragment : Fragment() {
             binding.radioMeterPerSec.isChecked = false
         }
 
+        // Set click listeners for language
         binding.radioEnglish.setOnClickListener {
             binding.radioArabic.isChecked = false
             binding.radioEnglish.isChecked = true
@@ -71,25 +82,27 @@ class SettingFragment : Fragment() {
             setLanguage("ar")
         }
 
+        // Set click listeners for temperature units
         binding.radioCelsius.setOnClickListener {
             binding.radioCelsius.isChecked = true
             binding.radioKelvin.isChecked = false
             binding.radioFahrenheit.isChecked = false
-            setTemperature("standard")
+            setTemperature("c")
         }
         binding.radioKelvin.setOnClickListener {
             binding.radioCelsius.isChecked = false
             binding.radioKelvin.isChecked = true
             binding.radioFahrenheit.isChecked = false
-            setTemperature("metric")
+            setTemperature("k")
         }
         binding.radioFahrenheit.setOnClickListener {
             binding.radioCelsius.isChecked = false
             binding.radioKelvin.isChecked = false
             binding.radioFahrenheit.isChecked = true
-            setTemperature("imperial")
+            setTemperature("f")
         }
 
+        // Set click listeners for wind speed
         binding.radioMeterPerSec.setOnClickListener {
             binding.radioMeterPerSec.isChecked = true
             binding.radioMilesPerHour.isChecked = false
@@ -100,8 +113,6 @@ class SettingFragment : Fragment() {
             binding.radioMilesPerHour.isChecked = true
             setWindSpeed("milesPerHour")
         }
-
-
 
         return binding.root
     }
@@ -117,7 +128,7 @@ class SettingFragment : Fragment() {
         val prefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
         prefs.edit().putString("language", languageCode).apply()
 
-        //activity?.recreate()
+        // Reload fragment
         (activity as? MainActivity)?.loadFragment(SettingFragment())
     }
 
@@ -125,14 +136,15 @@ class SettingFragment : Fragment() {
         val prefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
         prefs.edit().putString("temperature", temperature).apply()
 
+        // Reload fragment
         (activity as? MainActivity)?.loadFragment(SettingFragment())
-
     }
 
     private fun setWindSpeed(windSpeed: String) {
         val prefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
         prefs.edit().putString("windSpeed", windSpeed).apply()
 
+        // Reload fragment
         (activity as? MainActivity)?.loadFragment(SettingFragment())
     }
 
@@ -140,14 +152,20 @@ class SettingFragment : Fragment() {
         val prefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
         prefs.edit().putString("location", location).apply()
 
+        // Reload fragment
         (activity as? MainActivity)?.loadFragment(SettingFragment())
     }
 
-    companion object {
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null // Avoid memory leaks by setting binding to null
+    }
 
+    companion object {
         fun newInstance(param1: String, param2: String) =
             SettingFragment().apply {
                 arguments = Bundle().apply {
+                    // Set arguments if needed
                 }
             }
     }

@@ -3,7 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2b3863">
+    android:background="#FF325E65">
+
+    <ImageButton
+        android:id="@+id/alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
+        app:layout_constraintBottom_toTopOf="@+id/weather_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/notification" />
 
     <LinearLayout
         android:id="@+id/header_section"
@@ -22,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Zocca, Italy"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -34,7 +45,7 @@
             android:gravity="center"
             android:text="Mon, Oct 28"
             android:textAlignment="center"
-            android:textColor="#CCCCCC"
+            android:textColor="#020202"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -62,7 +73,7 @@
             android:layout_marginStart="16dp"
             android:text="15.5"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="64sp"
             android:textStyle="bold" />
 
@@ -71,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tempUnit"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="60sp" />
     </LinearLayout>
 
@@ -81,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Overcast Clouds"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="93%"
-            android:textColor="#CCCCCC" />
+            android:textColor="#000000" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -118,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="1025 hPa"
-            android:textColor="#CCCCCC" />
+            android:textColor="#000000" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -129,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0.84 km/h"
-            android:textColor="#CCCCCC" />
+            android:textColor="#000000" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -195,7 +206,7 @@
         android:paddingLeft="20dp"
         android:paddingBottom="20dp"
         android:text="@string/NextForecast"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/recycleViewDay"

@@ -7,8 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.forcastingapp.R
+
 import com.example.forcastingapp.model.WeatherAlert
+import com.example.weatherforecast.R
 
 class WeatherAlertAdapter(
     private val onDeleteClick: (Int) -> Unit

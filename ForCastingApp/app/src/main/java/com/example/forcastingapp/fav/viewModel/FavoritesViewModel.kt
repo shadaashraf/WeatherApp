@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.forcastingapp.model.Repository
+import com.example.forcastingapp.model.IRepository
 import com.example.forcastingapp.model.SimpleWeatherData
 import kotlinx.coroutines.launch
 
-class FavoritesViewModel(private val repository: Repository) : ViewModel() {
+class FavoritesViewModel(private val repository: IRepository) : ViewModel() {
 
     private val _favoriteCities = MutableLiveData<List<SimpleWeatherData?>>()
     val favoriteCities: LiveData<List<SimpleWeatherData?>> get() = _favoriteCities

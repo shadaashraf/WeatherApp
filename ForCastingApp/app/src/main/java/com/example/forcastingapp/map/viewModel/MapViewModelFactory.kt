@@ -2,12 +2,12 @@ package com.example.forcastingapp.map.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.forcastingapp.database.ILocalRepository
 import com.example.forcastingapp.model.Repository
-import com.example.forcastingapp.database.LocalRepository
 import com.example.forcastingapp.network.WeatherRemoteDataSourceImpl
 
 class MapViewModelFactory(
-    private val localRepository: LocalRepository,
+    private val localRepository: ILocalRepository,
     private val remoteRepository: WeatherRemoteDataSourceImpl
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
